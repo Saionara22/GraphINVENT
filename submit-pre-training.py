@@ -19,11 +19,11 @@ import torch
 # define what you want to do for the specified job(s)
 DATASET          = "gdb13_1K-debug"    # dataset name in "./data/pre-training/"
 JOB_TYPE         = "train"             # "preprocess", "train", "generate", or "test"
-JOBDIR_START_IDX = 0                   # where to start indexing job dirs
+JOBDIR_START_IDX = 0                  # where to start indexing job dirs
 N_JOBS           = 1                   # number of jobs to run per model
 RESTART          = False               # whether or not this is a restart job
-FORCE_OVERWRITE  = True                # overwrite job directories which already exist
-JOBNAME          = "example-job-name"  # used to create a sub directory
+FORCE_OVERWRITE  = False                # overwrite job directories which already exist
+JOBNAME          = "example"  # used to create a sub directory
 
 # if running using SLURM sbatch, specify params below
 USE_SLURM = False                        # use SLURM or not
@@ -42,9 +42,9 @@ else:
 
 # set paths here
 HOME             = str(Path.home())
-PYTHON_PATH      = f"{HOME}/miniconda3/envs/graphinvent/bin/python"
-GRAPHINVENT_PATH = "./graphinvent/"
-DATA_PATH        = "./data/pre-training/"
+PYTHON_PATH      = f"C:/Users/ruchi/AppData/Local/Microsoft/WindowsApps/python"
+GRAPHINVENT_PATH = f"./graphinvent/"
+DATA_PATH        = f"./data/pre-training/"
 
 if torch.cuda.is_available():
     DEVICE = "cuda"
@@ -60,11 +60,11 @@ params = {
     "dataset_dir"  : f"{DATA_PATH}{DATASET}/",
     "restart"      : RESTART,
     "model"        : "GGNN",
-    "sample_every" : 2,
+    "sample_every" : 10,
     "init_lr"      : 1e-4,
-    "epochs"       : 100,
-    "batch_size"   : 50,
-    "block_size"   : 1000,
+    "epochs"       : 400,
+    "batch_size"   : 1000,
+    "block_size"   : 100000,
     "device"       : DEVICE,
     "n_samples"    : 100,
     # additional paramaters can be defined here, if different from the "defaults"
